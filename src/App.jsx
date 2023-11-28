@@ -1,39 +1,26 @@
-import { useState } from 'react';
-import BurgerMenu from './components/BurgerMenu';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Layout from './layout/Layout';
+
+import PageStatistics from './Pages/PageStatistics.jsx';
+import PageDeveloper from './Pages/PageDeveloper.jsx';
+import PageConfig from './Pages/PageConfig.jsx';
+import PageInstructions from './Pages/PageInstructions.jsx';
+import PageLogIn from './Pages/PageLogIn.jsx';
 
 function App() {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
-
-  const closeMenu = () => {
-    setMenuIsOpen(false);
-  };
-
-  const openMenu = () => {
-    setMenuIsOpen(true);
-  };
-
   return (
     <>
-      <header className="s-60 d-flex align-items-center">
-        <div className="container">
-          <nav className="d-flex w-100 justify-content-between align-items-center">
-            <div className="logo">Logo</div>
-            <ul className="list-unstyled d-none d-sm-flex flex-row gap-4 m-0">
-              <li>Statistic</li>
-              <li>Developer</li>
-              <li>Config</li>
-              <li>Instructions</li>
-              <li>Log in</li>
-            </ul>
-            <div onClick={openMenu} className="burger d-sm-none">
-              <span className="tt"></span>
-              <span className="mm"></span>
-              <span className="bb"></span>
-            </div>
-          </nav>
-        </div>
-        <BurgerMenu menuIsOpen={menuIsOpen} closeMenu={closeMenu} />
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<PageStatistics />} />
+            <Route path="/developer" element={<PageDeveloper />} />
+            <Route path="/config" element={<PageConfig />} />
+            <Route path="/instructions" element={<PageInstructions />} />
+            <Route path="/log-in" element={<PageLogIn />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
