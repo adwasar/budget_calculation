@@ -46,10 +46,13 @@ function PageLogIn() {
       {getSnapshot(isLogin).state ? (
         <>
           <h2>User: {getSnapshot(user).name}</h2>
-          <button onClick={handleLogout}>Log out</button>
+          <div className="s-40"></div>
+          <button className="button" onClick={handleLogout}>
+            Log out
+          </button>
         </>
       ) : (
-        <form>
+        <form className="login">
           <input
             placeholder="login"
             type="text"
@@ -67,9 +70,12 @@ function PageLogIn() {
             autoComplete="current-password"
             required
           />
+          <div className="s-40"></div>
+          <button className="button" onClick={handleLogin}>
+            Log in
+          </button>
           <div className="s-10"></div>
-          <button onClick={handleLogin}>Log in</button>
-          <p>{loginStatus}</p>
+          <p className="c-red">{loginStatus}</p>
         </form>
       )}
     </div>
