@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 function BurgerMenu({ closeMenu, menuIsOpen }) {
   return (
     <>
@@ -8,11 +10,31 @@ function BurgerMenu({ closeMenu, menuIsOpen }) {
             <span></span>
           </div>
           <ul>
-            <li>Statistic</li>
-            <li>developer</li>
-            <li>Config</li>
-            <li>instructions</li>
-            <li>Log in</li>
+            <li>
+              <NavLink onClick={closeMenu} activeclassname="active" to="/">
+                Budget
+              </NavLink>
+            </li>
+            <li>
+              <NavLink onClick={closeMenu} activeclassname="active" to="/statistics">
+                Statistics
+              </NavLink>
+            </li>
+            <li>
+              <NavLink onClick={closeMenu} activeclassname="active" to="/developer">
+                Developer
+              </NavLink>
+            </li>
+            <li>
+              <NavLink onClick={closeMenu} activeclassname="active" to="/instructions">
+                Instructions
+              </NavLink>
+            </li>
+            <li>
+              <NavLink onClick={closeMenu} activeclassname="active" to="/log-in">
+                Log in
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
