@@ -42,6 +42,7 @@ function PageLogIn() {
 
   return (
     <div className="container">
+      <div className="s-60"></div>
       {getSnapshot(isLogin).state ? (
         <>
           <h2>User: {getSnapshot(user).name}</h2>
@@ -57,7 +58,7 @@ function PageLogIn() {
             autoComplete="username"
             required
           />
-          <br />
+          <div className="s-10"></div>
           <input
             placeholder="password"
             type="password"
@@ -66,7 +67,7 @@ function PageLogIn() {
             autoComplete="current-password"
             required
           />
-          <br />
+          <div className="s-10"></div>
           <button onClick={handleLogin}>Log in</button>
           <p>{loginStatus}</p>
         </form>
