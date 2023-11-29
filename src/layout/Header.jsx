@@ -24,17 +24,17 @@ function Header() {
             <ul className="list-unstyled d-none d-sm-flex flex-row gap-4 m-0">
               <li>
                 <NavLink activeclassname="active" to="/">
+                  Budget
+                </NavLink>
+              </li>
+              <li>
+                <NavLink activeclassname="active" to="/statistics">
                   Statistics
                 </NavLink>
               </li>
               <li>
                 <NavLink activeclassname="active" to="/developer">
                   Developer
-                </NavLink>
-              </li>
-              <li>
-                <NavLink activeclassname="active" to="/config">
-                  Config
                 </NavLink>
               </li>
               <li>
