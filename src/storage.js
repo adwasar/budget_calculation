@@ -9,7 +9,27 @@ const Login = types
       self.state = !self.state;
     }
 
-    return { toggle };
+    function setTrue() {
+      self.state = true;
+    }
+
+    function setFalse() {
+      self.state = false;
+    }
+
+    return { toggle, setTrue, setFalse };
+  });
+
+const User = types
+  .model({
+    name: types.optional(types.string, ''),
+  })
+  .actions((self) => {
+    function setName(newName) {
+      self.name = newName;
+    }
+
+    return { setName };
   });
 
 const Todo = types
@@ -27,23 +47,6 @@ const Todo = types
     }
 
     return { setName, toggle };
-  });
-
-const User = types
-  .model({
-    name: types.optional(types.string, ''),
-    age: types.optional(types.number, 20),
-  })
-  .actions((self) => {
-    function setName(newName) {
-      self.name = newName;
-    }
-
-    function addYear() {
-      self.age++;
-    }
-
-    return { setName, addYear };
   });
 
 const RootStore = types
@@ -71,11 +74,8 @@ const isLogin = Login.create({
   state: false,
 });
 
-store.addTodo(1, 'Eat a cake');
-store.addTodo(2, 'Drink cola');
-store.addUser(1, 'Vlad');
-store.addUser(2, 'Sasha');
-store.todos.get(1).toggle();
-store.users.get(1).setName('Dima');
+const user = User.create({
+  name: '',
+});
 
-export { isLogin, store };
+export { isLogin, store, user };
