@@ -22,7 +22,7 @@ function PageLogIn() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    if (login === 'testLogin22' && password === 's#dDA23@44#Ds') {
+    if (login === 'aaa' && password === 'aaa') {
       isLogin.setTrue();
       user.setName(login);
       setLogin('');
@@ -42,7 +42,6 @@ function PageLogIn() {
 
   return (
     <div className="container">
-      <h1>PageLogIn</h1>
       {getSnapshot(isLogin).state ? (
         <>
           <h2>User: {getSnapshot(user).name}</h2>

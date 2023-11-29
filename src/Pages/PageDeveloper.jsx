@@ -1,9 +1,7 @@
 function PageDeveloper() {
   return (
     <>
-      <div className="container">
-        <h1>PageDeveloper</h1>
-      </div>
+      <div className="container"></div>
     </>
   );
 }

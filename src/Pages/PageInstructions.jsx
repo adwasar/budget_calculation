@@ -1,9 +1,7 @@
 function PageInstructions() {
   return (
     <>
-      <div className="container">
-        <h1>PageInstructions</h1>
-      </div>
+      <div className="container"></div>
     </>
   );
 }

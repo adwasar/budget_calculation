@@ -1,12 +1,21 @@
 import { getSnapshot } from 'mobx-state-tree';
+
+import LoginMessage from '../components/LoginMessage';
 import { isLogin } from '../storage';
 
 function PageBudget() {
   return (
     <>
       <div className="container">
-        <h1>PageBudget</h1>
-        <div>{getSnapshot(isLogin).state ? '' : 'Log in please'}</div>
+        <div>
+          {getSnapshot(isLogin).state ? (
+            <>
+              <div>content</div>
+            </>
+          ) : (
+            <LoginMessage />
+          )}
+        </div>
       </div>
     </>
   );
