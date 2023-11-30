@@ -34,8 +34,8 @@ function PageInstructions() {
           </li>
         </ol>
         <p>
-          If you record several times with one date, you take only the last record, other records
-          with same date will be rewrited
+          If you record several times with same date, you take only the last record, other records
+          with same date will be rewritten
         </p>
         <div className="s-40"></div>
         <h2>Get own statistics</h2>
@@ -52,6 +52,14 @@ function PageInstructions() {
         <p>
           You can delete your record for rewrite it by pass the <strong>delete button</strong>
         </p>
+        <div className="s-40"></div>
+        <h2>Stack of project</h2>
+        <ul>
+          <li>JavaScript</li>
+          <li>SCSS, Bootstrap</li>
+          <li>Mobx-State-Tree</li>
+        </ul>
+        <div className="s-40"></div>
       </div>
     </>
   );
