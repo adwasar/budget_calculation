@@ -1,4 +1,4 @@
-import { types, getSnapshot } from 'mobx-state-tree';
+import { types } from 'mobx-state-tree';
 
 const Login = types
   .model({
@@ -32,43 +32,23 @@ const User = types
     return { setName };
   });
 
-const Todo = types
-  .model({
-    name: types.optional(types.string, ''),
-    done: types.optional(types.boolean, false),
-  })
-  .actions((self) => {
-    function setName(newName) {
-      self.name = newName;
-    }
-
-    function toggle() {
-      self.done = !self.done;
-    }
-
-    return { setName, toggle };
-  });
-
-const RootStore = types
-  .model({
-    users: types.map(User),
-    todos: types.optional(types.map(Todo), {}),
-  })
-  .actions((self) => {
-    function addTodo(id, name) {
-      self.todos.set(id, Todo.create({ name }));
-    }
-
-    function addUser(id, name) {
-      self.users.set(id, User.create({ name }));
-    }
-
-    return { addTodo, addUser };
-  });
-
-const store = RootStore.create({
-  users: {}, // users is required here because it's not marked as optional
+const Record = types.model({
+  date: types.optional(types.string, ''),
+  balance: types.optional(types.number, 0),
 });
+
+const RecordsHistory = types
+  .model({
+    records: types.array(Record),
+  })
+  .actions((self) => {
+    function addRecord(date, balance) {
+      self.records.push(Record.create({ date, balance }));
+      self.records = self.records.sort((a, b) => a.date.localeCompare(b.date));
+    }
+
+    return { addRecord };
+  });
 
 const isLogin = Login.create({
   state: false,
@@ -78,4 +58,8 @@ const user = User.create({
   name: '',
 });
 
-export { isLogin, store, user };
+const recordsHistory = RecordsHistory.create({
+  records: [],
+});
+
+export { isLogin, recordsHistory, user };

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { getSnapshot } from 'mobx-state-tree';
 
 import LoginMessage from '../components/LoginMessage';
-import { isLogin } from '../storage';
+import { isLogin, recordsHistory } from '../storage';
 
 function PageBudget() {
   const [expenses, setExpenses] = useState({
@@ -15,7 +15,6 @@ function PageBudget() {
     otherIncome: 0,
   });
   const [date, setDate] = useState('');
-  const [record, setRecord] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [dataInvalid, setDataInvalid] = useState(false);
 
@@ -48,12 +47,8 @@ function PageBudget() {
     event.preventDefault();
 
     if (date) {
-      setRecord({
-        date: date,
-        balance: calculateTotal({ ...income, ...expenses }),
-      });
       setIsSubmitted(true);
-      setDataInvalid(false);
+      recordsHistory.addRecord(date, calculateTotal({ ...income, ...expenses }));
       resetState();
     } else {
       setDataInvalid(true);
@@ -76,7 +71,6 @@ function PageBudget() {
       otherIncome: 0,
     });
     setDate('');
-    setRecord({});
     setDataInvalid(false);
   };
 
