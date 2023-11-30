@@ -53,7 +53,11 @@ const RecordsHistory = types
       }
     }
 
-    return { addRecord };
+    function deleteRecord(date) {
+      self.records = self.records.filter((el) => el.date !== date);
+    }
+
+    return { addRecord, deleteRecord };
   });
 
 const isLogin = Login.create({
