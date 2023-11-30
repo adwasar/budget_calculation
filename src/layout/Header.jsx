@@ -15,7 +15,7 @@ function Header() {
 
   return (
     <>
-      <header className="header s-60 d-flex align-items-center">
+      <header className="header bgc-purp c-white s-60 d-flex align-items-center">
         <div className="container">
           <nav className="d-flex w-100 justify-content-between align-items-center">
             <div className="logo">

@@ -8,4 +8,19 @@
   &-red {
     color: $c-red;
   }
+  &-white {
+    color: $c-white;
+  }
+}
+
+.bgc {
+  &-purp {
+    background-color: $bg-purp;
+  }
+  &-green-200 {
+    background-color: $bg-green-200;
+  }
+  &-red-200 {
+    background-color: $bg-red-200;
+  }
 }

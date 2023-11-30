@@ -67,14 +67,16 @@ function PageStatistics() {
                 {data.map((el, i) => {
                   return (
                     <div key={i}>
-                      <li className="border p-2 d-flex justify-content-between align-items-center">
+                      <li
+                        className={`${
+                          el.balance >= 0 ? 'bgc-green-200' : 'bgc-red-200'
+                        } p-3 br-20 d-flex justify-content-between align-items-center`}
+                      >
                         <div className="d-flex">
                           <div className="pe-3">{i + 1}.</div>
                           <div>
                             <div>date: {el.date}</div>
-                            <div className={el.balance >= 0 ? 'c-green' : 'c-red'}>
-                              budget: {(el.balance / coefficient.value).toFixed(2)}
-                            </div>
+                            <div>budget: {(el.balance / coefficient.value).toFixed(2)}</div>
                           </div>
                         </div>
                         <button onClick={() => handleDeleteDate(el)} className="button-delete">
