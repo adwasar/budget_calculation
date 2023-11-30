@@ -68,10 +68,13 @@ function PageStatistics() {
                   return (
                     <div key={i}>
                       <li className="border p-2 d-flex justify-content-between align-items-center">
-                        <div>
-                          <div>date: {el.date}</div>
-                          <div className={el.balance >= 0 ? 'c-green' : 'c-red'}>
-                            budget: {(el.balance / coefficient.value).toFixed(2)}
+                        <div className="d-flex">
+                          <div className="pe-3">{i + 1}.</div>
+                          <div>
+                            <div>date: {el.date}</div>
+                            <div className={el.balance >= 0 ? 'c-green' : 'c-red'}>
+                              budget: {(el.balance / coefficient.value).toFixed(2)}
+                            </div>
                           </div>
                         </div>
                         <button onClick={() => handleDeleteDate(el)} className="button-delete">
