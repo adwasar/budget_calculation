@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getSnapshot } from 'mobx-state-tree';
 
 import LoginMessage from '../components/LoginMessage';
-import { isLogin, recordsHistory } from '../storage';
+import { isLogin, recordsHistory, coefficient } from '../storage';
 
 function PageBudget() {
   const [expenses, setExpenses] = useState({
@@ -17,6 +17,24 @@ function PageBudget() {
   const [date, setDate] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [dataInvalid, setDataInvalid] = useState(false);
+  const [currency, setCurrency] = useState('UAH');
+  // const [coefficient, setCoefficient] = useState(1);
+
+  useEffect(() => {
+    if (currency !== 'UAH') {
+      fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json')
+        .then((response) => response.json())
+        .then((data) => {
+          const usdInfo = data.find((currencyApi) => currencyApi.cc === currency).rate;
+          coefficient.setValue(usdInfo);
+        })
+        .catch((error) => {
+          console.error('Ошибка при получении данных о курсах валют', error);
+        });
+    } else {
+      coefficient.setValue(1);
+    }
+  }, [currency]);
 
   const handleExpenseChange = (event, expenseType) => {
     const value = parseFloat(event.target.value) || 0;
@@ -43,12 +61,19 @@ function PageBudget() {
     setDate(event.target.value);
   };
 
+  const handleSelectChange = (event) => {
+    setCurrency(event.target.value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (date) {
       setIsSubmitted(true);
-      recordsHistory.addRecord(date, calculateTotal({ ...income, ...expenses }));
+      recordsHistory.addRecord(
+        date,
+        calculateTotal({ ...income, ...expenses }) * coefficient.value,
+      );
       resetState();
     } else {
       setDataInvalid(true);
@@ -74,6 +99,8 @@ function PageBudget() {
     setDataInvalid(false);
   };
 
+  useEffect(() => console.log(currency, coefficient));
+
   return (
     <>
       <div className="container">
@@ -86,6 +113,15 @@ function PageBudget() {
                 <input type="month" onChange={handleDateChange} value={date} />
                 <div className="c-red">{dataInvalid ? 'Enter date please' : ''}</div>
                 <div className="s-40"></div>
+
+                <h2>Currency</h2>
+                <select value={currency} onChange={handleSelectChange}>
+                  <option value="UAH">UAH</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+                </select>
+                <div className="s-40"></div>
+
                 <div className="row g-5">
                   <div className="col">
                     <h2>Expenses</h2>

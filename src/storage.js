@@ -60,6 +60,18 @@ const RecordsHistory = types
     return { addRecord, deleteRecord };
   });
 
+const Coefficient = types
+  .model({
+    value: types.optional(types.number, 1),
+  })
+  .actions((self) => {
+    function setValue(newValue) {
+      self.value = newValue;
+    }
+
+    return { setValue };
+  });
+
 const isLogin = Login.create({
   state: false,
 });
@@ -72,4 +84,8 @@ const recordsHistory = RecordsHistory.create({
   records: [],
 });
 
-export { isLogin, recordsHistory, user };
+const coefficient = Coefficient.create({
+  value: 1,
+});
+
+export { isLogin, recordsHistory, user, coefficient };
