@@ -22,7 +22,7 @@ function PageLogIn() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    if (login === 'aaa' && password === 'aaa') {
+    if (login === 'testLogin22' && password === 's#dDA23@44#Ds') {
       isLogin.setTrue();
       user.setName(login);
       setLogin('');

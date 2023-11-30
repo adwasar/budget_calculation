@@ -1,8 +1,25 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Від у обліковий запис
 
-Currently, two official plugins are available:
+1. Для входу перейдіть на сторінку Log in та введіть
+   Логін: testLogin22
+   Пароль: s#dDA23@44#Ds
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Заповнення даних
+
+1. Перейдіть до сторінки Budget
+2. Встановіть дату (обов'язково)
+3. Встановіть валюту (гривня за замовчуванням)
+4. Заповніть інпути доходів та росходів (опціонально)
+5. Натисніть Confirm для опрацювання запису
+
+Якщо ви декілька раз зробите запис на одну й туж саму дату, то в історії залишиться тільки останній запис
+
+### Статистика
+
+1. Перейдіть на сторінку Statistics
+
+Ви тут побачите історію ваших записів а також загальний балас
+За замовчуванням встановлена валюта у гривні, але можна обрати євро або долар
+Ви можете видаляти ваші записи через кнопку X
