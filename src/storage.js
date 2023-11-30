@@ -43,8 +43,14 @@ const RecordsHistory = types
   })
   .actions((self) => {
     function addRecord(date, balance) {
-      self.records.push(Record.create({ date, balance }));
-      self.records = self.records.sort((a, b) => a.date.localeCompare(b.date));
+      const existingRecordIndex = self.records.findIndex((record) => record.date === date);
+
+      if (existingRecordIndex !== -1) {
+        self.records[existingRecordIndex].balance = balance;
+      } else {
+        self.records.push(Record.create({ date, balance }));
+        self.records = self.records.sort((a, b) => a.date.localeCompare(b.date));
+      }
     }
 
     return { addRecord };
